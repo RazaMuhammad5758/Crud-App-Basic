@@ -49,3 +49,19 @@ img{
     flex-direction: column;
     gap: 10px;
 }
+
+input{
+    width: 250px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.formButton{
+    border: none;
+    padding: 5px 10px;
+    background-color: rgb(250, 136, 42);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+}
