@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Add = () => {
+
+    const navigate = useNavigate();
 
     const [books, setBooks] = useState({
         title: "",
@@ -13,6 +17,16 @@ const Add = () => {
         setBooks(prev => ({...prev, [e.target.name]: e.target.value}))
         console.log(books);
     }
+
+    const hancleClick = async (e) => {
+        e.preventDefault();
+        try{
+            await axios.post("http://localhost:8800/books", books)
+            navigate("/")
+        }catch(err){
+            console.log(err)
+        }
+    }
   return (
     <div className='form'>
         <h1>Add new book</h1>
@@ -20,6 +34,7 @@ const Add = () => {
         <input type="text" placeholder='Description' onChange={handleChange} name='desc'/>
         <input type="text" placeholder='Cover' onChange={handleChange} name='cover'/>
         <input type="number" placeholder='Price' onChange={handleChange} name='price'/>
+        <button onClick={hancleClick}>Add</button>
       
     </div>
   )

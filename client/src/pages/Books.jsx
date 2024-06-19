@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
+
 const Books = () => {
 
 const [books, setBooks] = useState([])
@@ -18,6 +19,15 @@ useEffect(() => {
 fetchAllBooks()
 },[])
 
+const deleteBook = async (id) => {
+    try{
+        await axios.delete(`http://localhost:8800/books/${id}`)
+        window.location.reload()
+    }catch(err){
+        console.log(err)
+    }
+}
+
   return (
     <div>
       <h1>Raza Book shop</h1>
@@ -28,6 +38,8 @@ fetchAllBooks()
            <h2>{book.title}</h2>
            <p>{book.desc}</p>
            <span>{book.price}</span>
+           <button className='update'><Link to={`/update/${book.id}`}>Update</Link></button>
+           <button className='delete' onClick={() => deleteBook(book.id)}>Delete</button>
            </div>
         ))}
       </div>
