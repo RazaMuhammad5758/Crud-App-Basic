@@ -21,6 +21,17 @@ const db = mysql.createConnection({
         })
     })
 
+    app.post("/books",(req, res) => {
+        const q = "INSERT INTO books (`title`, `desc`, `price`, `cover`) VALUES (?)"
+
+        const values = ["title from backend", "desc from backend", "cover from backend"]
+
+        db.query(q, [values], (err, data) => {
+            if(err) return res.json(err)
+            return res.json(data)
+        })
+    })
+
 app.listen(8800, () => {
     console.log("Backend is connected!")
 })
