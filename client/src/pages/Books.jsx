@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Books = () => {
 
@@ -22,7 +23,7 @@ fetchAllBooks()
       <h1>Raza Book shop</h1>
       <div className="books">
         {books.map(book => (
-          <div className="book">
+          <div className="book" key={book.id}>
            {book.cover && <img src={book.cover} alt="" />}          
            <h2>{book.title}</h2>
            <p>{book.desc}</p>
@@ -30,6 +31,9 @@ fetchAllBooks()
            </div>
         ))}
       </div>
+      <button>
+        <Link to="/add">Add New Book</Link>
+      </button>
     </div>
   )
 }
